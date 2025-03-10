@@ -1,4 +1,5 @@
 from stats import *
+import sys
 
 def get_book_text(file_handler):
     with open(file_handler) as f:
@@ -6,7 +7,11 @@ def get_book_text(file_handler):
     
     
 def main():
-    book_path = "books/frankenstein.txt"
+    params = sys.argv
+    if len(params) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    book_path = params[1]
     char_stats = sort_chars(get_char_counts(book_path))
     print("============ BOOKBOT ============")
     print(f"Analyzing book found at {book_path}...")
